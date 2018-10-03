@@ -8,7 +8,19 @@
 
 int main(void)
 {
-    // Your code here 
-    
+    // Your code here
+    FILE * file;
+
+    file = fopen ("text.txt", "r+"); 
+    int rc = fork();
+    if (rc == 0) {
+        printf("child: %p\n", file);
+        fprintf(file, "hello something child\n");
+    }
+    else {
+        wait(NULL);
+        printf("parent: %p\n", file);
+        fprintf(file, "hello something parent\n");
+    }
     return 0;
 }

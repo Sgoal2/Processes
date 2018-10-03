@@ -10,5 +10,28 @@ int main(void)
 {
     // Your code here
 
+    int x;
+    x = 27;
+    
+    int rc = fork();
+    
+    // if (rc < 0) {    // fork failed; exit
+    //     fprintf(stderr, "fork failed\n");
+    //     exit(1);
+    // } 
+    if (rc == 0) {    // child process satisfies this branch
+        x += 10;
+        printf("hello, child here (x: %d) \n", x);
+    
+    }
+    else {
+        wait(NULL);
+        x += 12;
+        printf("hello, parent here (x: %d) \n", x);
+
+    }
+    
+    
+
     return 0;
 }
