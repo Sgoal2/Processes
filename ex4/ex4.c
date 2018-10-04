@@ -10,7 +10,21 @@
 
 int main(void)
 {
-    // Your code here    
+    int rc = fork();
+    
+    
+    if (rc == 0) {    // child process satisfies this branch
+       char * ls_args[] = { "/bin/ls" , "-l", NULL}; 
+        printf("hello\n");
+    
+    execvp(   ls_args[0],     ls_args);
+    }
+    else {
+        wait(NULL);
+        
+        printf("goodbye \n");
+
+    }   
 
     return 0;
 }
